@@ -9,6 +9,7 @@
   font-family: public-pixel;
   src: url("/fonts/public-pixel.woff");
 }
+
 @font-face {
   font-family: chill;
   src: url("/fonts/chill.woff");
@@ -23,7 +24,8 @@ html,
 body {
   overflow-x: hidden;
   background-color: #f6d4b1;
-  font-family: "chill", sans-serif;
+  font-family: "Fira Code", "Cascadia Code", "Source Code Pro", "JetBrains Mono",
+    Consolas, "Courier New", monospace;
   font-size: 18px;
   -webkit-text-size-adjust: 100%;
 }
@@ -61,6 +63,7 @@ body {
   margin: 0;
   text-align: left;
 }
+
 #hero-backup ul {
   margin-left: 32px;
 }
@@ -94,11 +97,13 @@ body {
   justify-content: center;
   gap: 16px;
 }
+
 #loading h2 {
   text-align: left;
   margin: 0;
   padding: 0;
 }
+
 #loading-items {
   height: 64px;
   overflow: hidden;
@@ -129,7 +134,8 @@ h1 {
   display: inline-block;
   color: #f6d4b1;
   background-color: var(--color);
-  font-family: "public-pixel", monospace;
+  font-family: "Fira Code", "Cascadia Code", "Source Code Pro", "JetBrains Mono",
+    Consolas, "Courier New", monospace;
   font-size: 2em;
   padding: 16px;
   padding-top: 4px;
@@ -145,7 +151,8 @@ h2 {
   text-align: center;
   color: #f6d4b1;
   background-color: var(--color);
-  font-family: "public-pixel", monospace;
+  font-family: "Fira Code", "Cascadia Code", "Source Code Pro", "JetBrains Mono",
+    Consolas, "Courier New", monospace;
   padding: 16px;
   padding-top: 4px;
   padding-bottom: 8px;
@@ -158,7 +165,8 @@ h3 {
   font-size: 1.2em;
   text-align: center;
   color: var(--color);
-  font-family: "public-pixel", monospace;
+  font-family: "Fira Code", "Cascadia Code", "Source Code Pro", "JetBrains Mono",
+    Consolas, "Courier New", monospace;
   padding-top: 4px;
   padding-bottom: 8px;
   margin: auto;
@@ -186,6 +194,7 @@ p {
   margin: auto;
   box-sizing: border-box;
 }
+
 .skills {
   display: flex;
   flex-wrap: wrap;
@@ -271,6 +280,7 @@ a {
   text-decoration-thickness: 2px;
   transition: all 0.3s;
 }
+
 a:hover {
   transform: scale(1.1);
   box-shadow: 1px 1px 0px #f6d4b1, 4px 4px 0px rgba(82, 82, 82, 0.25);
@@ -283,7 +293,8 @@ a:active {
 
 .btn {
   position: relative;
-  font-family: "chill", sans-serif;
+  font-family: "Fira Code", "Cascadia Code", "Source Code Pro", "JetBrains Mono",
+    Consolas, "Courier New", monospace;
   font-size: 18px;
   display: inline-flex;
   gap: 0.25rem;
