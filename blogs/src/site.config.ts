@@ -3,7 +3,7 @@ export const SITE_SETTINGS = {
   description: "A space to explore ideas and share what I'm learning",
   owner: "Daniel Adrian",
   ogImages:
-    "https://res.cloudinary.com/dellp9a4z/image/upload/v1756758385/og-home_ejuqq8.png",
+    "https://res.cloudinary.com/dwbobu9ig/image/upload/v1756758385/og-home_ejuqq8.png",
   socials: [
     {
       icon: "github",
@@ -17,23 +17,23 @@ export const SITE_SETTINGS = {
 export const header = [
   {
     name: "Blog",
-    url: "/blog",
+    url: "/blogs/blog",
   },
   {
     name: "Projects",
-    url: "/projects",
+    url: "/blogs/projects",
   },
   {
     name: "About",
-    url: "/about",
+    url: "/blogs/about",
   },
   {
     name: "Contact",
-    url: "/contact",
+    url: "/blogs/contact",
   },
   {
     name: "Newsletter",
-    url: "/newsletter",
+    url: "/blogs/newsletter",
   },
 ];
 
@@ -43,19 +43,19 @@ export const footer = [
     links: [
       {
         name: "Search",
-        url: "/search",
+        url: "/blogs/search",
       },
       {
         name: "Blog",
-        url: "/blog",
+        url: "/blogs/blog",
       },
       {
         name: "Projects",
-        url: "/projects",
+        url: "/blogs/projects",
       },
       {
         name: "About",
-        url: "/about",
+        url: "/blogs/about",
       },
     ],
   },
@@ -64,19 +64,19 @@ export const footer = [
     links: [
       {
         name: "Contact",
-        url: "/contact",
+        url: "/blogs/contact",
       },
       {
         name: "Newsletter",
-        url: "/newsletter",
+        url: "/blogs/newsletter",
       },
       {
         name: "RSS",
-        url: "/rss.xml",
+        url: "/blogs/rss.xml",
       },
       {
         name: "Sitemap",
-        url: "/sitemap-index.xml",
+        url: "/blogs/sitemap-index.xml",
       },
     ],
   },
