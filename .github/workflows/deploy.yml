@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: portfolio/package-lock.json
 
@@ -45,12 +45,21 @@ jobs:
         run: pnpm install
         working-directory: blogs
 
+      - name: Create blog .env
+        run: |
+          echo "PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.PUBLIC_CLOUDINARY_CLOUD_NAME }}" >> .env
+          echo "PUBLIC_TURNSTILE_SITE_KEY=${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}" >> .env
+        working-directory: blogs
+
       - name: Build blog
         run: pnpm build
         working-directory: blogs
 
       - name: Merge blog into dist
         run: cp -r blogs/dist ./portfolio/dist/blogs
+
+      - name: Disable Jekyll
+        run: touch portfolio/dist/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
