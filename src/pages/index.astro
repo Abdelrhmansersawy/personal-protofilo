@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import Container from "../components/layouts/Container.astro";
+import ContentGrid from "../components/layouts/sections/ContentGrid.astro";
+import FeaturedContent from "../components/layouts/sections/FeaturedContent.astro";
+import EmptyState from "../components/ui/EmptyState.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { attachMeta } from "../utils/meta";
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+
+const sortedPosts = allPosts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const latestPosts = sortedPosts.slice(0, 3).map((post) => attachMeta(post));
+
+const featured = [...allPosts]
+    .filter((item) => item.data.featured !== undefined)
+    .sort((a, b) => (a.data.featured ?? 0) - (b.data.featured ?? 0));
+
+const hasContent =
+    featured.length > 0 || latestPosts.length > 0;
+---
+
+<BaseLayout
+    title="Abdelrhman Sersawy"
+    description="ICPC World Finals 2026 | Open-Source Contributor | Software Engineer"
+>
+    <Container class="space-y-24 py-12">
+        {
+            hasContent ? (
+                <>
+                    {featured.length > 0 && (
+                        <FeaturedContent items={featured} />
+                    )}
+
+                    {latestPosts.length > 0 && (
+                        <ContentGrid
+                            title="Latest Posts"
+                            href="/blog"
+                            viewAllText="View all posts →"
+                            items={latestPosts}
+                        />
+                    )}
+                </>
+            ) : (
+                <EmptyState
+                    title="Nothing here yet..."
+                    message="Check back soon for new items!"
+                />
+            )
+        }
+    </Container>
+</BaseLayout>

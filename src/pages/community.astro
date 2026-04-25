@@ -1,0 +1,76 @@
+---
+import Container from "../components/layouts/Container.astro";
+import PageTitle from "../components/ui/PageTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const leadershipRoles = [
+    {
+        title: "Judge & Problem Setter",
+        subtitle: "ICPC Regional Contests",
+        date: "Various",
+        description: "Served as a judge in three ICPC regional contests and tested six ICPC regional contests, including ECPC, JCPC, QCPC, PCPC, TCPC, and LCPC."
+    },
+    {
+        title: "Development Team Leader",
+        subtitle: "ACM ICPC Menofia Community",
+        date: "Aug 2023 – Aug 2024",
+        description: "Mentored 700+ trainees in algorithms & data structures through structured coursework and monthly contests; trainees' average contest scores improved by 30%. Led problem setting & testing for six ICPC regional contests."
+    }
+];
+
+// YouTube videos / talks
+const talksAndVideos = [
+    { 
+        title: "Algorithms & Data Structures", 
+        url: "https://www.youtube.com/@AbdelrhmanSersawy", 
+        date: "Ongoing",
+        description: "Educational videos and tutorials explaining algorithms and data structures."
+    }
+];
+---
+
+<BaseLayout
+    title="Leadership & Community | Abdelrhman Sersawy"
+    description="Leadership roles, volunteering, talks, and community outreach."
+>
+    <Container class="mx-auto max-w-4xl py-12">
+        <PageTitle title="Leadership & Community" />
+
+        <div class="mt-16 space-y-16">
+            <section>
+                <h2 class="text-3xl font-bold border-b border-neutral-200 dark:border-neutral-700 pb-2 mb-8">Leadership</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {leadershipRoles.map((role) => (
+                        <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
+                            <h3 class="text-xl font-bold mb-1">{role.title}</h3>
+                            <h4 class="text-blue-600 dark:text-yellow-400 font-medium mb-1">{role.subtitle}</h4>
+                            <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">{role.date}</p>
+                            <p class="text-neutral-700 dark:text-neutral-300">{role.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-bold border-b border-neutral-200 dark:border-neutral-700 pb-2 mb-8">Talks & Videos</h2>
+                {talksAndVideos.length > 0 ? (
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {talksAndVideos.map((item) => (
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" class="block rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm hover:border-blue-500 hover:shadow-md transition">
+                                <h3 class="font-bold text-lg text-blue-600 dark:text-yellow-400 mb-1">{item.title}</h3>
+                                <p class="text-sm text-neutral-500 mb-2">{item.date}</p>
+                                <p class="text-sm text-neutral-700 dark:text-neutral-300">{item.description}</p>
+                            </a>
+                        ))}
+                    </div>
+                ) : (
+                    <div class="rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 p-12 text-center text-neutral-500 dark:text-neutral-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube opacity-50 mx-auto mb-4"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        <p class="text-lg font-medium mb-1">YouTube Content Coming Soon</p>
+                        <p class="text-sm">Video talks and tutorials will be published here.</p>
+                    </div>
+                )}
+            </section>
+        </div>
+    </Container>
+</BaseLayout>

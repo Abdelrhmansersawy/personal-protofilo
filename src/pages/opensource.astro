@@ -1,0 +1,94 @@
+---
+import Container from "../components/layouts/Container.astro";
+import PageTitle from "../components/ui/PageTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = [
+    {
+        title: "Checkstyle",
+        role: "Static analysis for Java · 8k+ stars",
+        skills: ["Java", "Testing", "Documentation"],
+        description: "Contributed 10+ merged PRs and reported 3+ bugs, improving functionality, testing, and documentation.",
+        prs: [
+            { text: "Developed new header validation check; expanded coverage to multi-regex validation.", url: "https://github.com/checkstyle/checkstyle/pull/16625" },
+            { text: "Enhanced documentation integrity by parsing XDoc via JUnit; improved category validation accuracy.", url: "https://github.com/checkstyle/checkstyle/pull/17132" },
+            { text: "All PRs", url: "https://github.com/checkstyle/checkstyle/pulls?q=author%3AAbdelrhmansersawy+is%3Amerged+" }
+        ]
+    },
+    {
+        title: "pgexporter",
+        role: "Prometheus exporter for PostgreSQL · C",
+        skills: ["C", "PostgreSQL", "Monitoring"],
+        description: "",
+        prs: [
+            { text: "Implemented metric for long-running transactions to detect stalled queries.", url: "https://github.com/pgexporter/pgexporter/pull/403" },
+            { text: "Added Multixact ID Age metric for vacuum monitoring.", url: "https://github.com/pgexporter/pgexporter/pull/407" },
+            { text: "Added missing metrics to pg_stat_walreceiver for better replication monitoring.", url: "https://github.com/pgexporter/pgexporter/pull/409" },
+            { text: "Implemented optional query flag feature for graceful failures without warnings.", url: "https://github.com/pgexporter/pgexporter/pull/384" }
+        ]
+    },
+    {
+        title: "pgwatch",
+        role: "PostgreSQL metrics monitoring",
+        skills: ["Go", "PostgreSQL"],
+        description: "",
+        prs: [
+            { text: "Fixed newline formatting in metric print-sql output.", url: "https://github.com/cybertec-postgresql/pgwatch/pull/1147" }
+        ]
+    },
+    {
+        title: "LLVM",
+        role: "Compiler infrastructure · Clang, Swift, Rust",
+        skills: ["C++", "LLVM", "libc"],
+        description: "",
+        prs: [
+            { text: "Refactored libc math functions (llogbf16, llogbf128) to header-only implementations.", url: "https://github.com/llvm/llvm-project/pull/178078" }
+        ]
+    }
+];
+---
+
+<BaseLayout
+    title="Open Source | Abdelrhman Sersawy"
+    description="Open Source contributions to Checkstyle, pgexporter, pgwatch, and LLVM."
+>
+    <Container class="mx-auto max-w-4xl py-12">
+        <PageTitle title="Open-Source Contributions" />
+
+        <div class="mt-16 grid grid-cols-1 gap-12">
+            {projects.map((item) => (
+                <article class="rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                    <h2 class="text-2xl font-bold mb-2">{item.title}</h2>
+                    <h3 class="text-neutral-500 dark:text-neutral-400 mb-6">{item.role}</h3>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {item.skills.map(skill => (
+                            <span class="rounded-md border border-neutral-200 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 text-sm">
+                                {skill}
+                            </span>
+                        ))}
+                    </div>
+                    
+                    {item.description && (
+                        <p class="text-neutral-700 dark:text-neutral-300 mb-4 font-medium">
+                            {item.description}
+                        </p>
+                    )}
+                    
+                    <ul class="space-y-3 mt-4">
+                        {item.prs.map(pr => (
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-1 shrink-0 text-blue-500 dark:text-yellow-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-pull-request"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>
+                                </span>
+                                <a href={pr.url} target="_blank" rel="noopener noreferrer" class="text-neutral-700 hover:text-blue-600 dark:text-neutral-300 dark:hover:text-yellow-400 underline decoration-transparent hover:decoration-current transition-all">
+                                    {pr.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </article>
+            ))}
+        </div>
+    </Container>
+</BaseLayout>

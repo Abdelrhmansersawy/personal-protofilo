@@ -1,0 +1,65 @@
+---
+import Container from "../components/layouts/Container.astro";
+import PageTitle from "../components/ui/PageTitle.astro";
+import OptimizedImage from "../components/ui/OptimizedImage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const achievements = [
+    {
+        title: "ICPC World finalist",
+        date: "2026",
+        description: "Qualified for the International Collegiate Programming Contest World Finals."
+    },
+    {
+        title: "ACPC Regtional Bronze medalist",
+        date: "2025",
+        description: "Secured a Bronze Medal in the Africa and Arab Collegiate Programming Championship.",
+        image: "/images/ACPC2025.jpeg"
+    },
+    {
+        title: "ECPC National Gold Medialist",
+        date: "2025",
+        description: "Secured a Gold Medal in the Egyptian Collegiate Programming Contest.",
+        image: "/images/ECPC2025.jpeg"
+    },
+    {
+        title: "Master at codefores",
+        date: "2025",
+        description: "Achieved Master rank on Codeforces.",
+        image: "/images/Master.jpeg"
+    },
+    {
+        title: "IEEExtreme 17.0",
+        date: "2023",
+        description: "Placed 26th globally among 7000+ teams in the IEEExtreme 17.0 programming competition."
+    }
+];
+---
+
+<BaseLayout
+    title="Achievements | Abdelrhman Sersawy"
+    description="Competitive programming achievements, ICPC World Finals qualification, and contest medaling."
+>
+    <Container class="mx-auto max-w-4xl py-12">
+        <PageTitle title="Achievements" />
+
+        <div class="mt-16 space-y-8">
+            <ul class="list-disc pl-6 space-y-8 text-neutral-700 dark:text-neutral-300">
+                {achievements.map((achievement) => (
+                    <li class="pl-2 mb-6">
+                        <span class="font-bold text-neutral-900 dark:text-neutral-50 text-lg">{achievement.title}</span> <span class="text-sm font-medium text-neutral-500 dark:text-neutral-400 ml-2">({achievement.date})</span>
+                        <div class="text-sm mt-1 text-neutral-600 dark:text-neutral-400">{achievement.description}</div>
+                        {achievement.image && (
+                            <OptimizedImage
+                                src={achievement.image}
+                                alt={achievement.title}
+                                wrapperClass="mt-6 mx-auto w-full max-w-2xl rounded-xl overflow-hidden shadow-sm"
+                                imageClass="!relative !inset-auto !h-auto !w-full"
+                            />
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </Container>
+</BaseLayout>
