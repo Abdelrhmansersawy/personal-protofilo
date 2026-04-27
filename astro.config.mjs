@@ -76,7 +76,7 @@ export default defineConfig({
         "object-src 'self'",
         "connect-src 'self' https://challenges.cloudflare.com",
         "base-uri 'self'",
-        "img-src 'self' https://res.cloudinary.com/dellp9a4z/ data:",
+        "img-src 'self' https://res.cloudinary.com/dellp9a4z/ https://yt3.googleusercontent.com/ https://yt3.ggpht.com/ data:",
         "media-src 'self' https://res.cloudinary.com/dellp9a4z/",
         "font-src 'self' data:",
         "frame-src 'self' https://challenges.cloudflare.com",

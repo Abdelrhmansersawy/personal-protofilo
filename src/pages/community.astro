@@ -55,22 +55,24 @@ let youtubeData = {
 };
 
 try {
-    const html = await fetch("https://www.youtube.com/@AbdelrhmanSersawy").then(r => r.text());
-    const ytMatch = html.match(/var ytInitialData = (\{.*?\});<\/script>/);
-    if(ytMatch) {
-        const data = JSON.parse(ytMatch[1]);
-        const meta = data.metadata.channelMetadataRenderer;
-        const header = data.header.pageHeaderRenderer.content.pageHeaderViewModel;
-        
-        const subText = header.metadata.contentMetadataViewModel.metadataRows[1].metadataParts[0].text.content;
-        const vidText = header.metadata.contentMetadataViewModel.metadataRows[1].metadataParts[1].text.content;
-        
-        const subMatch = subText.match(/[\d,.]+[KMBkmb]?/);
-        const vidMatch = vidText.match(/[\d,.]+[KMBkmb]?/);
-        
-        youtubeData.image = meta.avatar.thumbnails[0].url;
-        youtubeData.subscribers = subMatch ? `+${subMatch[0]}` : youtubeData.subscribers;
-        youtubeData.videos = vidMatch ? vidMatch[0] : youtubeData.videos;
+    if (import.meta.env.PROD) {
+        const html = await fetch("https://www.youtube.com/@AbdelrhmanSersawy").then(r => r.text());
+        const ytMatch = html.match(/var ytInitialData = (\{.*?\});<\/script>/);
+        if(ytMatch) {
+            const data = JSON.parse(ytMatch[1]);
+            const meta = data.metadata.channelMetadataRenderer;
+            const header = data.header.pageHeaderRenderer.content.pageHeaderViewModel;
+            
+            const subText = header.metadata.contentMetadataViewModel.metadataRows[1].metadataParts[0].text.content;
+            const vidText = header.metadata.contentMetadataViewModel.metadataRows[1].metadataParts[1].text.content;
+            
+            const subMatch = subText.match(/[\d,.]+[KMBkmb]?/);
+            const vidMatch = vidText.match(/[\d,.]+[KMBkmb]?/);
+            
+            youtubeData.image = meta.avatar.thumbnails[0].url;
+            youtubeData.subscribers = subMatch ? `+${subMatch[0]}` : youtubeData.subscribers;
+            youtubeData.videos = vidMatch ? vidMatch[0] : youtubeData.videos;
+        }
     }
 } catch (e) {
     console.error("Failed to fetch YouTube data:", e);
