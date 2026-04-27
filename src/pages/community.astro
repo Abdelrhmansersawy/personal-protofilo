@@ -7,8 +7,37 @@ const leadershipRoles = [
     {
         title: "Judge & Problem Setter",
         subtitle: "ICPC Regional Contests",
-        date: "Various",
-        description: "Served as a judge in three ICPC regional contests and tested six ICPC regional contests, including ECPC, JCPC, QCPC, PCPC, TCPC, and LCPC."
+        date: "2023 – Present",
+        lists: [
+            {
+                heading: "Judging Roles",
+                description: "Evaluated team solutions.",
+                items: [
+                    "ICPC Qatar Collegiate Programming Contest 2024",
+                    "ECPC Qualifications 2025"
+                ]
+            },
+            {
+                heading: "Problem Setting",
+                description: "Authored contest problems.",
+                items: [
+                    "ICPC Qatar Collegiate Programming Contest 2024",
+                    "ICPC Qatar Teens Programming Contest 2024"
+                ]
+            },
+            {
+                heading: "Testing Roles",
+                description: "Validated solutions and test cases.",
+                items: [
+                    "ECPC Qualifications 2025 (all 8 days)",
+                    "JCPC 2025",
+                    "QCPC 2025",
+                    "PCPC 2025",
+                    "LCPC 2025",
+                    "TCPC 2025"
+                ]
+            }
+        ]
     },
     {
         title: "Development Team Leader",
@@ -18,13 +47,45 @@ const leadershipRoles = [
     }
 ];
 
+// Fetch dynamic YouTube stats
+let youtubeData = {
+    image: "/icon.png",
+    subscribers: "+355",
+    videos: "37"
+};
+
+try {
+    const html = await fetch("https://www.youtube.com/@AbdelrhmanSersawy").then(r => r.text());
+    const ytMatch = html.match(/var ytInitialData = (\{.*?\});<\/script>/);
+    if(ytMatch) {
+        const data = JSON.parse(ytMatch[1]);
+        const meta = data.metadata.channelMetadataRenderer;
+        const header = data.header.pageHeaderRenderer.content.pageHeaderViewModel;
+        
+        const subText = header.metadata.contentMetadataViewModel.metadataRows[1].metadataParts[0].text.content;
+        const vidText = header.metadata.contentMetadataViewModel.metadataRows[1].metadataParts[1].text.content;
+        
+        const subMatch = subText.match(/[\d,.]+[KMBkmb]?/);
+        const vidMatch = vidText.match(/[\d,.]+[KMBkmb]?/);
+        
+        youtubeData.image = meta.avatar.thumbnails[0].url;
+        youtubeData.subscribers = subMatch ? `+${subMatch[0]}` : youtubeData.subscribers;
+        youtubeData.videos = vidMatch ? vidMatch[0] : youtubeData.videos;
+    }
+} catch (e) {
+    console.error("Failed to fetch YouTube data:", e);
+}
+
 // YouTube videos / talks
 const talksAndVideos = [
     { 
         title: "Algorithms & Data Structures", 
         url: "https://www.youtube.com/@AbdelrhmanSersawy", 
         date: "Ongoing",
-        description: "Educational videos and tutorials explaining algorithms and data structures."
+        description: "Educational videos and tutorials explaining algorithms and data structures.",
+        image: youtubeData.image,
+        subscribers: youtubeData.subscribers,
+        videos: youtubeData.videos
     }
 ];
 ---
@@ -45,7 +106,22 @@ const talksAndVideos = [
                             <h3 class="text-xl font-bold mb-1">{role.title}</h3>
                             <h4 class="text-blue-600 dark:text-yellow-400 font-medium mb-1">{role.subtitle}</h4>
                             <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">{role.date}</p>
-                            <p class="text-neutral-700 dark:text-neutral-300">{role.description}</p>
+                            {role.description && <p class="text-neutral-700 dark:text-neutral-300 whitespace-pre-line">{role.description}</p>}
+                            {role.lists && (
+                                <div class="space-y-4">
+                                    {role.lists.map((list) => (
+                                        <div class="mb-2">
+                                            <h5 class="font-semibold text-neutral-900 dark:text-neutral-100">{list.heading}</h5>
+                                            {list.description && <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-2">{list.description}</p>}
+                                            <ul class="list-disc pl-5 text-sm text-neutral-700 dark:text-neutral-300 space-y-1">
+                                                {list.items.map((item) => (
+                                                    <li>{item}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -57,9 +133,30 @@ const talksAndVideos = [
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {talksAndVideos.map((item) => (
                             <a href={item.url} target="_blank" rel="noopener noreferrer" class="block rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm hover:border-blue-500 hover:shadow-md transition">
-                                <h3 class="font-bold text-lg text-blue-600 dark:text-yellow-400 mb-1">{item.title}</h3>
-                                <p class="text-sm text-neutral-500 mb-2">{item.date}</p>
-                                <p class="text-sm text-neutral-700 dark:text-neutral-300">{item.description}</p>
+                                <div class="flex items-start gap-4 mb-4">
+                                    {item.image && (
+                                        <img src={item.image} alt={item.title} class="w-14 h-14 rounded-full object-cover border border-neutral-200 dark:border-neutral-700" />
+                                    )}
+                                    <div>
+                                        <h3 class="font-bold text-lg text-blue-600 dark:text-yellow-400 mb-1">{item.title}</h3>
+                                        <p class="text-sm text-neutral-500">{item.date}</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-neutral-700 dark:text-neutral-300 mb-4">{item.description}</p>
+                                <div class="flex items-center gap-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                                    {item.subscribers && (
+                                        <div class="flex items-center gap-1.5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                            <span>{item.subscribers} Subscribers</span>
+                                        </div>
+                                    )}
+                                    {item.videos && (
+                                        <div class="flex items-center gap-1.5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                                            <span>{item.videos} Videos</span>
+                                        </div>
+                                    )}
+                                </div>
                             </a>
                         ))}
                     </div>

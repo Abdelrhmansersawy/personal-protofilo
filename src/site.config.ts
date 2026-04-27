@@ -5,7 +5,7 @@ export const SITE_SETTINGS = {
   lang: "en",
   themeColor: "#8D46E7",
   ogImages:
-    "https://res.cloudinary.com/dwbobu9ig/image/upload/v1756758385/og-home_ejuqq8.png",
+    "/icon.png",
   socials: [
     {
       icon: "github",
