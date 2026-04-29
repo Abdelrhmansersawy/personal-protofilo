@@ -1,0 +1,34 @@
+Essays are an important part of how we evaluate applicants for the MLH Fellowship. Make sure you include enough information to help us understand who you are, why you want to be an MLH Fellow, and what you would bring to the program.
+
+Your essays are your first impression to our admissions team. The best essays show us how passionate you are about this opportunity and give us lots of detail about you and your interests. Take your time here and show the best possible version of yourself! There is no word count minimum, but we recommend at least a paragraph or two for each essay.
+
+We recognize that many applicants will want to use AI-enhancing tools to polish their essays (ChatGPT, Bard, etc.) While we recognize the value that these tools can provide in enhancing or streamlining your writing, we have found that applicants who rely too heavily on these tools are unlikely to be ready for the high-level communications required to participate in the program. Our recommendation is to write your own personalized essays from scratch and only use AI tools for enhancements or corrections. Submitting a fully AI-crafted essay may result in your disqualification
+
+## Briefly describe what this code sample does
+
+This code sample describes the internal alerting system implemented in pgexporter, which collects PostgreSQL metrics and exposes them through Prometheus for monitoring. This implementation already includes out-of-box alerts such that server down, connection exhaustion, and replication lag. Moreover, it also supports gathering metrics from different clusters (e.g., primary and replica servers). In addition to the above mentioned predefined alerts, you can define your own alerts via YAML file parsing in order to define them. Also, you can override any of the built-in threshold values (e.g., change max connection threshold value from 80% to 90%). All alerts will be exposed by Prometheus, making them easy to integrate with Slack for sending alerts instantly in case of any fires. Another possibility would be to visualize them in Grafana and detect regular patterns like firing the same alerts every single day (e.g., 9 AM connection exhaustion).
+
+Moreover, we have prepared documentation chapter explaining the alert usage along with how to set custom alerts, as well as how to integrate alerts with Slack. Our solution is lightweight and tuned for decreasing scrape overhead from ~1.1s to 0.01s per metric scrape.
+
+## Briefly describe what you learned when you created this code sample
+
+What I learned:
+
+1. Since this was a large feature, my mentor suggested starting with the documentation manual chapter first. At the beginning, I did not fully understand why, but it helped me think from the user’s perspective - how the feature should be used and how it integrates with other tools.
+
+2. At the beginning, we do not need to worry too much about complexity - start simple and optimize later. That is what I did: I built a simple version first, then started measuring its performance using ab (Apache Benchmark). After that, I detected bottlenecks in the code and worked on optimizing them. Alongside this, I spent weeks testing the system end to end on multiple servers to make sure the alerts worked as expected.
+
+3. Moreover, scalability turned out to be essential because of how important it was to ensure that nothing will become difficult when implementing further changes. For that reason, my mentor advised me to refrain from hard-coding and make sure all the parts are scalable through the utilization of algorithms and data structures (e.g., dynamic programming and bitmasking).
+
+## Why do you want to become an MLH Fellow?
+
+
+## The MLH Fellowship is a diverse community that welcomes Fellows from a wide range of experiences and backgrounds. What perspective or experience will you bring to the fellowship to strengthen our community?
+
+
+
+## Anything else we should know about you?
+
+Outside of work, my other interest is competitive programming, particularly problem solving in programming contests. During the past 4 years, I have competed in ICPC competitions (the biggest competition in the world for programmers), and I have qualified ICPC World Finalist 2026, and achieved an ECPC National Gold Medal and an ACPC Regional Bronze Medal.
+
+While doing this, I have coached 700 students from my university algorithms and data structures, helping them to compete in various ICPC competitions nationally and regionally.

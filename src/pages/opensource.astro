@@ -3,54 +3,160 @@ import Container from "../components/layouts/Container.astro";
 import PageTitle from "../components/ui/PageTitle.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const projects = [
+interface PR {
+    text: string;
+    url: string;
+}
+
+interface Section {
+    label: string;
+    prs: PR[];
+}
+
+interface Project {
+    title: string;
+    role: string;
+    repoUrl: string;
+    skills: string[];
+    description: string;
+    sections?: Section[];
+    prs?: PR[];
+}
+
+const projects: Project[] = [
+    {
+        title: "pgexporter",
+        role: "Prometheus exporter for PostgreSQL",
+        repoUrl: "https://github.com/pgexporter/pgexporter",
+        skills: ["C", "PostgreSQL", "Prometheus", "Grafana"],
+        description: "",
+        sections: [
+            {
+                label: "Infrastructure",
+                prs: [
+                    { text: "Implement time-based configuration generalization", url: "https://github.com/pgexporter/pgexporter/pull/394" },
+                    { text: "Implement shared cache module", url: "https://github.com/pgexporter/pgexporter/pull/430" },
+                    { text: "Implement exclude collectors", url: "https://github.com/pgexporter/pgexporter/pull/470" },
+                ]
+            },
+            {
+                label: "Metrics",
+                prs: [
+                    { text: "Implement metric for long-running transactions", url: "https://github.com/pgexporter/pgexporter/pull/403" },
+                    { text: "Add Multixact ID Age (datminmxid) metric", url: "https://github.com/pgexporter/pgexporter/pull/407" },
+                    { text: "Add missing metrics to pg_stat_walreceiver", url: "https://github.com/pgexporter/pgexporter/pull/409" },
+                ]
+            },
+            {
+                label: "Grafana",
+                prs: [
+                    { text: "Generate Version-Specific Grafana Dashboards", url: "https://github.com/pgexporter/pgexporter/pull/443" },
+                ]
+            },
+            {
+                label: "Prometheus",
+                prs: [
+                    { text: "Support storing PostgreSQL type OIDs for NULL values as default values", url: "https://github.com/pgexporter/pgexporter/pull/492" },
+                    { text: "Implement Prometheus support using ART", url: "https://github.com/pgexporter/pgexporter/pull/388" },
+                ]
+            },
+            {
+                label: "Alert System",
+                prs: [
+                    { text: "Add alerting section to Grafana manual", url: "https://github.com/pgexporter/pgexporter/pull/413" },
+                    { text: "Implement internal pgexporter_alert", url: "https://github.com/pgexporter/pgexporter/pull/414" },
+                ]
+            },
+        ]
+    },
+    {
+        title: "pgmoneta",
+        role: "Backup & restore for PostgreSQL",
+        repoUrl: "https://github.com/pgmoneta/pgmoneta",
+        skills: ["C", "PostgreSQL", "Backup"],
+        description: "",
+        sections: [
+            {
+                label: "Progress Tracking",
+                prs: [
+                    { text: "Add support for PROGRESS in the BASE_BACKUP command", url: "https://github.com/pgmoneta/pgmoneta/pull/957" },
+                    { text: "Expand backup Progress to include other workflow progress", url: "https://github.com/pgmoneta/pgmoneta/pull/1097" },
+                ]
+            },
+            {
+                label: "Bug Fixes",
+                prs: [
+                    { text: "Fix WAL locking race and skip temporary files", url: "https://github.com/pgmoneta/pgmoneta/pull/1104" },
+                    { text: "Fix Docker image reference for Rocky Linux 10", url: "https://github.com/pgmoneta/pgmoneta/pull/1079" },
+                ]
+            },
+        ]
+    },
+    {
+        title: "pgagroal",
+        role: "High-performance connection pooler for PostgreSQL",
+        repoUrl: "https://github.com/pgagroal/pgagroal",
+        skills: ["C", "PostgreSQL", "Networking"],
+        description: "",
+        prs: [
+            { text: "Detect duplicated and inconsistent servers", url: "https://github.com/pgagroal/pgagroal/pull/826" },
+            { text: "Refactor pgagroal conf get output to decouple CLI and JSON", url: "https://github.com/pgagroal/pgagroal/pull/847" },
+            { text: "Detect PostgreSQL version mismatches across servers", url: "https://github.com/pgagroal/pgagroal/pull/855" },
+        ]
+    },
     {
         title: "Checkstyle",
         role: "Static analysis for Java · 8k+ stars",
+        repoUrl: "https://github.com/checkstyle/checkstyle",
         skills: ["Java", "Testing", "Documentation"],
-        description: "Contributed 10+ merged PRs and reported 3+ bugs, improving functionality, testing, and documentation.",
-        prs: [
-            { text: "Developed new header validation check; expanded coverage to multi-regex validation.", url: "https://github.com/checkstyle/checkstyle/pull/16625" },
-            { text: "Enhanced documentation integrity by parsing XDoc via JUnit; improved category validation accuracy.", url: "https://github.com/checkstyle/checkstyle/pull/17132" },
-            { text: "All PRs", url: "https://github.com/checkstyle/checkstyle/pulls?q=author%3AAbdelrhmansersawy+is%3Amerged+" }
-        ]
-    },
-    {
-        title: "pgexporter",
-        role: "Prometheus exporter for PostgreSQL · C",
-        skills: ["C", "PostgreSQL", "Monitoring"],
         description: "",
         prs: [
-            { text: "Implemented metric for long-running transactions to detect stalled queries.", url: "https://github.com/pgexporter/pgexporter/pull/403" },
-            { text: "Added Multixact ID Age metric for vacuum monitoring.", url: "https://github.com/pgexporter/pgexporter/pull/407" },
-            { text: "Added missing metrics to pg_stat_walreceiver for better replication monitoring.", url: "https://github.com/pgexporter/pgexporter/pull/409" },
-            { text: "Implemented optional query flag feature for graceful failures without warnings.", url: "https://github.com/pgexporter/pgexporter/pull/384" }
-        ]
-    },
-    {
-        title: "pgwatch",
-        role: "PostgreSQL metrics monitoring",
-        skills: ["Go", "PostgreSQL"],
-        description: "",
-        prs: [
-            { text: "Fixed newline formatting in metric print-sql output.", url: "https://github.com/cybertec-postgresql/pgwatch/pull/1147" }
+            { text: "Designed and implemented new header validation check supporting multiple regex definitions", url: "https://github.com/checkstyle/checkstyle/pull/16625" },
+            { text: "Enhanced documentation integrity by adding JUnit tests for parsing index.xml XDoc categories", url: "https://github.com/checkstyle/checkstyle/pull/17132" },
+            { text: "Fixed PIT mutation suppression for JavadocTagInfo to improve mutation coverage accuracy", url: "https://github.com/checkstyle/checkstyle/pull/16770" },
+            { text: "Killed surviving PIT mutations in CheckstyleAntTask (processFiles, processFile)", url: "https://github.com/checkstyle/checkstyle/pull/16763" },
+            { text: "Refactored test utilities to use verifyWithInlineConfigParserAndLogger", url: "https://github.com/checkstyle/checkstyle/pull/16698" },
+            { text: "All PRs", url: "https://github.com/checkstyle/checkstyle/pulls?q=author%3AAbdelrhmansersawy+is%3Amerged+" },
         ]
     },
     {
         title: "LLVM",
         role: "Compiler infrastructure · Clang, Swift, Rust",
+        repoUrl: "https://github.com/llvm/llvm-project",
         skills: ["C++", "LLVM", "libc"],
         description: "",
         prs: [
-            { text: "Refactored libc math functions (llogbf16, llogbf128) to header-only implementations.", url: "https://github.com/llvm/llvm-project/pull/178078" }
+            { text: "Refactored libc math functions (llogbf16, llogbf128) to header-only implementations", url: "https://github.com/llvm/llvm-project/pull/178078" },
         ]
-    }
+    },
+    {
+        title: "pgwatch",
+        role: "PostgreSQL monitoring and metrics collection",
+        repoUrl: "https://github.com/cybertec-postgresql/pgwatch",
+        skills: ["Go", "PostgreSQL"],
+        description: "",
+        prs: [
+            { text: "Add missing newline in metric print-sql output", url: "https://github.com/cybertec-postgresql/pgwatch/pull/1147" },
+        ]
+    },
+    {
+        title: "Litmus",
+        role: "Cloud-Native Chaos Engineering platform",
+        repoUrl: "https://github.com/litmuschaos/litmus",
+        skills: ["Go", "Kubernetes", "Chaos Engineering"],
+        description: "",
+        prs: [
+            { text: "Update CONTRIBUTING.md with new community meeting details", url: "https://github.com/litmuschaos/litmus/pull/5422" },
+        ]
+    },
 ];
+
+const prIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>`;
 ---
 
 <BaseLayout
     title="Open Source | Abdelrhman Sersawy"
-    description="Open Source contributions to Checkstyle, pgexporter, pgwatch, and LLVM."
+    description="Open Source contributions to pgexporter, pgmoneta, pgagroal, Checkstyle, LLVM, pgwatch, and Litmus."
 >
     <Container class="mx-auto max-w-4xl py-12">
         <PageTitle title="Open-Source Contributions" />
@@ -58,7 +164,12 @@ const projects = [
         <div class="mt-16 grid grid-cols-1 gap-12">
             {projects.map((item) => (
                 <article class="rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
-                    <h2 class="text-2xl font-bold mb-2">{item.title}</h2>
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-2xl font-bold">{item.title}</h2>
+                        <a href={item.repoUrl} target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-blue-600 dark:hover:text-yellow-400 transition-colors" aria-label={`${item.title} GitHub repository`}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                    </div>
                     <h3 class="text-neutral-500 dark:text-neutral-400 mb-6">{item.role}</h3>
                     
                     <div class="flex flex-wrap gap-2 mb-6">
@@ -74,19 +185,40 @@ const projects = [
                             {item.description}
                         </p>
                     )}
-                    
-                    <ul class="space-y-3 mt-4">
-                        {item.prs.map(pr => (
-                            <li class="flex items-start">
-                                <span class="mr-2 mt-1 shrink-0 text-blue-500 dark:text-yellow-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-pull-request"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>
-                                </span>
-                                <a href={pr.url} target="_blank" rel="noopener noreferrer" class="text-neutral-700 hover:text-blue-600 dark:text-neutral-300 dark:hover:text-yellow-400 underline decoration-transparent hover:decoration-current transition-all">
-                                    {pr.text}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+
+                    {/* Sectioned PRs */}
+                    {item.sections && item.sections.map(section => (
+                        <div class="mt-5">
+                            <h4 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3 flex items-center gap-2">
+                                <span class="inline-block w-6 h-px bg-neutral-300 dark:bg-neutral-600"></span>
+                                {section.label}
+                            </h4>
+                            <ul class="space-y-3">
+                                {section.prs.map(pr => (
+                                    <li class="flex items-start">
+                                        <span class="mr-2 mt-1 shrink-0 text-blue-500 dark:text-yellow-400" set:html={prIcon} />
+                                        <a href={pr.url} target="_blank" rel="noopener noreferrer" class="text-neutral-700 hover:text-blue-600 dark:text-neutral-300 dark:hover:text-yellow-400 underline decoration-transparent hover:decoration-current transition-all">
+                                            {pr.text}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+
+                    {/* Flat PRs (no sections) */}
+                    {item.prs && (
+                        <ul class="space-y-3 mt-4">
+                            {item.prs.map(pr => (
+                                <li class="flex items-start">
+                                    <span class="mr-2 mt-1 shrink-0 text-blue-500 dark:text-yellow-400" set:html={prIcon} />
+                                    <a href={pr.url} target="_blank" rel="noopener noreferrer" class="text-neutral-700 hover:text-blue-600 dark:text-neutral-300 dark:hover:text-yellow-400 underline decoration-transparent hover:decoration-current transition-all">
+                                        {pr.text}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </article>
             ))}
         </div>

@@ -39,8 +39,12 @@ export const header = [
     url: "/blog",
   },
   {
-    name: "About",
-    url: "/about",
+    name: "Open Source",
+    url: "/opensource",
+  },
+  {
+    name: "Projects",
+    url: "/projects",
   },
   {
     name: "Achievements",
@@ -49,6 +53,15 @@ export const header = [
   {
     name: "Community",
     url: "/community",
+  },
+  {
+    name: "About",
+    url: "/about",
+  },
+  {
+    name: "Resume",
+    url: "/AbdelrhmanSersawy.pdf",
+    external: true,
   },
 ];
 
@@ -65,8 +78,12 @@ export const footer = [
         url: "/blog",
       },
       {
-        name: "About",
-        url: "/about",
+        name: "Open Source",
+        url: "/opensource",
+      },
+      {
+        name: "Projects",
+        url: "/projects",
       },
     ],
   },
@@ -80,6 +97,14 @@ export const footer = [
       {
         name: "Community",
         url: "/community",
+      },
+      {
+        name: "About",
+        url: "/about",
+      },
+      {
+        name: "Resume",
+        url: "/AbdelrhmanSersawy.pdf",
       },
     ],
   },

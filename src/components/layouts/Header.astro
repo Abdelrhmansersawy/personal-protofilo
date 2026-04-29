@@ -23,7 +23,12 @@ import { Icon } from "astro-icon/components";
             <div class="hidden lg:flex lg:items-center lg:space-x-8">
                 {
                     headerNavLinks.map((item) => (
-                        <Link variant="animated-underline" href={item.url}>
+                        <Link
+                            variant="animated-underline"
+                            href={item.url}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                        >
                             {item.name}
                         </Link>
                     ))
@@ -79,6 +84,8 @@ import { Icon } from "astro-icon/components";
                         <Link
                             variant="animated-underline"
                             href={item.url}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
                             class="border-b border-neutral-200 px-4 py-3 text-center text-lg font-medium after:bottom-0! dark:border-neutral-600"
                         >
                             {item.name}
