@@ -16,7 +16,7 @@ export const SITE_SETTINGS = {
     {
       icon: "linkedin",
       label: "LinkedIn",
-      url: "https://www.linkedin.com/in/abdelrhmansersawy",
+      url: "https://www.linkedin.com/in/sersawy",
       handle: "abdelrhmansersawy",
     },
     {
