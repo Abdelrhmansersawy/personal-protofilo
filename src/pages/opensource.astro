@@ -29,7 +29,7 @@ const projects: Project[] = [
         role: "Prometheus exporter for PostgreSQL",
         repoUrl: "https://github.com/pgexporter/pgexporter",
         skills: ["C", "PostgreSQL", "Prometheus", "Grafana"],
-        description: "",
+        description: "Triage Team Member",
         sections: [
             {
                 label: "Infrastructure",
@@ -74,7 +74,7 @@ const projects: Project[] = [
         role: "Backup & restore for PostgreSQL",
         repoUrl: "https://github.com/pgmoneta/pgmoneta",
         skills: ["C", "PostgreSQL", "Backup"],
-        description: "",
+        description: "Triage Team Member",
         sections: [
             {
                 label: "Progress Tracking",
@@ -97,7 +97,7 @@ const projects: Project[] = [
         role: "High-performance connection pooler for PostgreSQL",
         repoUrl: "https://github.com/pgagroal/pgagroal",
         skills: ["C", "PostgreSQL", "Networking"],
-        description: "",
+        description: "Triage Team Member",
         prs: [
             { text: "Detect duplicated and inconsistent servers", url: "https://github.com/pgagroal/pgagroal/pull/826" },
             { text: "Refactor pgagroal conf get output to decouple CLI and JSON", url: "https://github.com/pgagroal/pgagroal/pull/847" },
@@ -129,26 +129,7 @@ const projects: Project[] = [
             { text: "Refactored libc math functions (llogbf16, llogbf128) to header-only implementations", url: "https://github.com/llvm/llvm-project/pull/178078" },
         ]
     },
-    {
-        title: "pgwatch",
-        role: "PostgreSQL monitoring and metrics collection",
-        repoUrl: "https://github.com/cybertec-postgresql/pgwatch",
-        skills: ["Go", "PostgreSQL"],
-        description: "",
-        prs: [
-            { text: "Add missing newline in metric print-sql output", url: "https://github.com/cybertec-postgresql/pgwatch/pull/1147" },
-        ]
-    },
-    {
-        title: "Litmus",
-        role: "Cloud-Native Chaos Engineering platform",
-        repoUrl: "https://github.com/litmuschaos/litmus",
-        skills: ["Go", "Kubernetes", "Chaos Engineering"],
-        description: "",
-        prs: [
-            { text: "Update CONTRIBUTING.md with new community meeting details", url: "https://github.com/litmuschaos/litmus/pull/5422" },
-        ]
-    },
+
 ];
 
 const prIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg>`;
@@ -156,7 +137,7 @@ const prIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" v
 
 <BaseLayout
     title="Open Source | Abdelrhman Sersawy"
-    description="Open Source contributions to pgexporter, pgmoneta, pgagroal, Checkstyle, LLVM, pgwatch, and Litmus."
+    description="Open Source contributions to pgexporter, pgmoneta, pgagroal, Checkstyle, and LLVM."
 >
     <Container class="mx-auto max-w-4xl py-12">
         <PageTitle title="Open-Source Contributions" />
